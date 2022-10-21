@@ -10,7 +10,7 @@
     Для парсинга JSON используем GSON от Google
  */
 
-package task01_1;
+package Task011;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -41,7 +41,7 @@ public class Task011 {
         StringBuilder builder = new StringBuilder(sql);
         for (String key : whereData.keySet()) {
             if (!whereData.get(key).equals("null")) {
-                builder.append(key).append(whereData.get(key)).append(" and ");
+                builder.append(key).append("='").append(whereData.get(key)).append("' and ");
             }
         }
 

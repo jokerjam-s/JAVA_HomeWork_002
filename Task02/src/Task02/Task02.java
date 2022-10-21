@@ -6,7 +6,7 @@
     спросим у пользователя
  */
 
-package task02;
+package Task02;
 
 import java.util.Arrays;
 import java.util.Random;

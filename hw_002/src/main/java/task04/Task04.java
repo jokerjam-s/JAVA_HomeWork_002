@@ -8,12 +8,12 @@
 
  */
 
-package task05;
+package task04;
 
 import java.util.Scanner;
 import java.util.logging.Logger;
 
-public class Task05 {
+public class Task04 {
     public static void main(String[] args) {
         Logger logger = Logger.getAnonymousLogger();
 
