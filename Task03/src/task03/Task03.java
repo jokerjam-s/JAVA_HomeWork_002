@@ -6,12 +6,12 @@
     Расширение файла:
     Расширение файла: jpg
  */
-package task04;
+package task03;
 
 import java.io.File;
 import java.util.HashSet;
 
-public class Task04 {
+public class Task03 {
     private static File[] files;
 
     public static void main(String[] args) {

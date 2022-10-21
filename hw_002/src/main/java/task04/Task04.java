@@ -1,53 +1,26 @@
 /*
-    Напишите метод, который определит тип (расширение) файлов из текущей папки и выведет в консоль результат вида
+    К калькулятору из предыдущего дз добавить логирование.
 
-    Расширение файла: txt
-    Расширение файла: pdf
-    Расширение файла:
-    Расширение файла: jpg
+    На вход поолучаем строку с простыой операцией,
+    между цифровыми значениями и знаком операции должен быть пробел.
+    Считаем введенные данные валидными, проверку верности данных и
+    математическое соответствие не проводим
+
  */
-package task04;
 
-import java.io.File;
-import java.util.HashSet;
+package task05;
 
-public class Task04 {
-    private static File[] files;
+import java.util.Scanner;
+import java.util.logging.Logger;
 
+public class Task05 {
     public static void main(String[] args) {
+        Logger logger = Logger.getAnonymousLogger();
+
         clearScreen();
 
-        //HashSet<String> fileCurentPath = getFilesList(System.getProperty("user.dir"));
-
-        for (String f : getFilesList(System.getProperty("user.dir"))) {
-            System.out.println("Расширение файла: " + f);
-        }
-    }
-
-    // подготовка списка файлов в каталоге проекта
-    public static HashSet<String> getFilesList(String path) {
-        File directory = new File(path);
-        File[] files = directory.listFiles();
-
-        HashSet<String> fileExt = new HashSet<String>();
-
-        for (File f : files) {
-            if (f.isFile()) {
-                fileExt.add(getFileExtension(f.getName()));
-            }
-        }
-
-        return fileExt;
-    }
-
-    // получение расширения файла из имени
-    private static String getFileExtension(String fileName) {
-        // если в имени файла есть точка и она не является первым символом в названии файла
-        if (fileName.lastIndexOf(".") != -1 && fileName.lastIndexOf(".") != 0)
-            // то вырезаем все знаки после последней точки в названии файла, то есть ХХХХХ.txt -> txt
-            return fileName.substring(fileName.lastIndexOf(".") + 1);
-            // в противном случае возвращаем заглушку, то есть расширение не найдено
-        else return "";
+        String calcStr = readStrConsole("Введите строку расчета: ");
+        logger.info(calculate(calcStr));
     }
 
     // очистка терминала
@@ -56,4 +29,37 @@ public class Task04 {
         System.out.flush();
     }
 
+    // получение строкового значения с консоли
+    public static String readStrConsole(String message){
+        System.out.print(message);
+        Scanner scanner = new Scanner(System.in);
+
+        return scanner.nextLine();
+    }
+
+    // расчет строкового выражения
+    public static String calculate(String operation){
+        String[] calc = operation.split(" ");
+
+        float op1 = Float.parseFloat(calc[0]);
+        float op2 = Float.parseFloat(calc[2]);
+        float result = 0;
+
+        switch (calc[1]){
+            case "+":
+                result = op1 + op2;
+                break;
+            case "-":
+                result = op1 - op2;
+                break;
+            case "*":
+                result = op1 * op2;
+                break;
+            case "/":
+                result = op1 / op2;
+                break;
+        }
+
+        return operation + " = " + result;
+    }
 }
